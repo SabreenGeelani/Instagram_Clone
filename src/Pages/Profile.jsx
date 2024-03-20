@@ -2,13 +2,20 @@ import { useState } from "react";
 import { IoMdGrid } from "react-icons/io";
 import { CiBookmark, CiCirclePlus } from "react-icons/ci";
 import { FaUsersRectangle } from "react-icons/fa6";
-import { MdOutlineLinkedCamera } from "react-icons/md";
+import { BiMessageRounded } from "react-icons/bi";
+// import { MdOutlineLinkedCamera } from "react-icons/md";
 import { IoSettingsOutline } from "react-icons/io5";
+import Modal from "../components/Modal";
 
 export default function Profile() {
   const [isPosts, setIsPosts] = useState(true);
   const [isSaved, setIsSaved] = useState(false);
   const [isTagged, setIsTagged] = useState(false);
+  const [post1, setpost1] = useState(false);
+  const [post2, setpost2] = useState(false);
+  const [post3, setpost3] = useState(false);
+  const [post4, setpost4] = useState(false);
+  const [post5, setpost5] = useState(false);
 
   const handlePosts = () => {
     setIsPosts(true);
@@ -28,7 +35,7 @@ export default function Profile() {
 
   return (
     <div className="overflow-y-auto h-full w-full">
-      <div className="w-[900px] mx-auto h-full">
+      <div className="w-[950px] mx-auto h-full">
         <div className="px-12 py-6 flex gap-x-28 items-center">
           <img
             src="src/assets/profile_img.jpg"
@@ -95,7 +102,7 @@ export default function Profile() {
           <p>Recents</p>
         </div> */}
         </div>
-        <main className="flex flex-col items-center justify-center">
+        <main className="flex flex-col  ">
           <div className="flex items-center justify-center gap-x-8">
             <p
               className={
@@ -132,21 +139,84 @@ export default function Profile() {
             </p>
           </div>
           {isPosts && (
-            <div className="py-16 flex flex-col items-center">
-              <MdOutlineLinkedCamera className="text-6xl p-3 rounded-full border-2 border-black mb-4" />
-
-              <h1 className="font-extrabold text-3xl mb-4">Share Photos</h1>
-              <p className="text-xs mb-4">
-                When you share photos, they will appear on your profile
-              </p>
-              <a
-                href=""
-                className="text-blue-400 font-medium hover:text-black cursor-pointer text-sm"
+            <div className="grid grid-cols-3 gap-2">
+              <div
+                className="bg-black bg-[url('src/assets/post1.avif')] cursor-pointer w-full h-full bg-cover bg-center"
+                onClick={() => setpost1(true)}
               >
-                Share your first photo
-              </a>
+                <div className="hover:bg-black w-full h-full hover:opacity-50 relative">
+                  {/* <span className=" absolute top-1/2 left-1/2 z-50 text-white font-medium flex items-center">
+                    <BiMessageRounded className="mr-1" />0
+                  </span> */}
+                </div>
+              </div>
+              <div
+                className="bg-black bg-[url('src/assets/post2.avif')] cursor-pointer w-full h-80"
+                onClick={() => setpost2(true)}
+              >
+                <div className="hover:bg-black w-full h-full hover:opacity-50"></div>
+              </div>
+              <div
+                className="bg-black bg-[url('src/assets/post3.avif')] cursor-pointer"
+                onClick={() => setpost3(true)}
+              >
+                <div className="hover:bg-black w-full h-full hover:opacity-50"></div>
+              </div>
+              <div
+                className="bg-black bg-[url('src/assets/post4.avif')] cursor-pointer w-full h-80"
+                onClick={() => setpost4(true)}
+              >
+                <div className="hover:bg-black w-full h-full hover:opacity-50"></div>
+              </div>
+              <div
+                className="bg-black bg-[url('src/assets/post5.avif')] cursor-pointer"
+                onClick={() => setpost5(true)}
+              >
+                <div className="hover:bg-black w-full h-full hover:opacity-50"></div>
+              </div>
             </div>
           )}
+          {post1 && (
+            <Modal
+              src="src/assets/post1.avif"
+              setposts={setpost1}
+              setpostNxt={setpost2}
+              post1={post1}
+            />
+          )}
+          {post2 && (
+            <Modal
+              src="src/assets/post2.avif"
+              setposts={setpost2}
+              setpostNxt={setpost3}
+              setpostPrev={setpost1}
+            />
+          )}
+          {post3 && (
+            <Modal
+              src="src/assets/post3.avif"
+              setposts={setpost3}
+              setpostNxt={setpost4}
+              setpostPrev={setpost2}
+            />
+          )}
+          {post4 && (
+            <Modal
+              src="src/assets/post4.avif"
+              setposts={setpost4}
+              setpostNxt={setpost5}
+              setpostPrev={setpost3}
+            />
+          )}
+          {post5 && (
+            <Modal
+              src="src/assets/post5.avif"
+              setposts={setpost5}
+              post5={post5}
+              setpostPrev={setpost4}
+            />
+          )}
+
           {isSaved && (
             <div className="w-full">
               <header className="flex justify-between items-center w-full mb-3 py-5 ">
