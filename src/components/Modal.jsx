@@ -20,14 +20,24 @@ export default function Modal({
   const handleClick = () => {
     console.log("clicked");
     setIsNewModal(true);
-    console.log(setIsNewModal);
+
+    // console.log(setIsNewModal);
+  };
+  const handleNext = () => {
+    setpostNxt(true);
+    setposts(false);
+  };
+  const handlePrev = () => {
+    setpostPrev(true);
+    setposts(false);
   };
   return (
-    <div
-      className="fixed  flex  justify-center top-0 left-0 bg-black/70 w-full h-full py-8 pt-0 "
-      onClick={() => setposts(false)}
-    >
-      <div className="absolute  w-[80%] h-full flex items-center gap-y-16 z-50">
+    <>
+      <div
+        className="fixed  flex  justify-center top-0 left-0 bg-black/70 w-full h-full py-8 pt-0"
+        onClick={() => setposts(false)}
+      ></div>
+      <div className="absolute  w-[80%] h-full flex items-center gap-y-16 z-30 left-[10%] top-0">
         <img src={src} alt="" className=" object-cover w-[60%] h-[43.9rem]" />
         <div className="bg-white w-[40%] h-auto">
           <div className="flex items-center justify-between p-4 border-b">
@@ -103,18 +113,16 @@ export default function Modal({
       {post5 || (
         <FaCircleChevronRight
           className="absolute left-[96%] top-[50%] text-white text-3xl cursor-pointer hover:text-gray-200 z-50"
-          onClick={() => setpostNxt(true)}
+          onClick={handleNext}
         />
       )}
       {post1 || (
         <FaCircleChevronLeft
           className="absolute left-[2%] top-[50%] text-white text-3xl cursor-pointer hover:text-gray-200 z-50"
-          onClick={() => {
-            setpostPrev(true);
-          }}
+          onClick={handlePrev}
         />
       )}
       {isNewModal && <NewModal setNewModal={setIsNewModal} />}
-    </div>
+    </>
   );
 }
